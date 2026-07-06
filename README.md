@@ -1,6 +1,6 @@
-# gogo1.23
+# go1.23
 
-Debian packaging for Go 1.23: repackages the official precompiled toolchain from [go.dev](https://go.dev/dl/) into `golang-1.23-go` packages for enterprise `.deb`-only installs.
+Debian packaging for Go 1.23: compiles the Go toolchain from the official [golang/go](https://github.com/golang/go) source tree into `golang-1.23-go` packages for enterprise `.deb`-only installs.
 
 ## Supported Debian suites
 
@@ -10,7 +10,6 @@ Debian packaging for Go 1.23: repackages the official precompiled toolchain from
 Packaging trees live under `debiandirs/<suite>/`. Changelog tracks:
 
 - **mainline** — `changelogs/mainline/<suite>`
-- **nightly** — `changelogs/nightly/<suite>`
 
 ## Build (from workspace)
 
@@ -25,8 +24,8 @@ make build GO=1.23
 
 | Path | Purpose |
 |------|---------|
-| `go/` | Official precompiled Go toolchain tree (from go.dev tarball) |
-| `patches/` | Quilt series (usually empty for repackaging) |
+| `go/` | Go source tree (git submodule from golang/go, `release-branch.go1.23` branch) |
+| `patches/` | Quilt series (applied via `gbp pq`) |
 | `debiandirs/` | Per-suite Debian packaging (`trixie`, `unstable`) |
-| `changelogs/` | `mainline` and `nightly` dch history per suite |
+| `changelogs/` | `mainline` dch history per suite |
 | `.github/workflows/main.yml` | Caller workflow for scheduled CI (seeded per minor line) |
